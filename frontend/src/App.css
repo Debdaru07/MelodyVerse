@@ -1,0 +1,18 @@
+:root {
+    --light-green: #e0f2ca;
+    --dark-green: #c9dcc6;
+  }
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(to bottom right, var(--light-green), var(--dark-green));
+  }
+  
+  .smooth-gradient {
+    background: linear-gradient(
+      to right,
+      transparent 20%, /* Gradient starts at 50% (midpoint) */
+      white 100% /* Gradient ends at 100% */
+    );
+  }

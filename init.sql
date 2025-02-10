@@ -1,0 +1,13 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+
+CREATE TABLE "User"(
+	"id" BIGSERIAL PRIMARY KEY NOT NULL,
+	"userId" VARCHAR(50) DEFAULT uuid_generate_v4(),
+	"username" VARCHAR(50) UNIQUE NOT NULL,
+	"password"	VARCHAR(100) NOT NULL,
+	"name" VARCHAR(60) NOT NULL,
+	"email" VARCHAR(50) UNIQUE NOT NULL,
+	"deleted" Bool DEFAULT FALSE,
+	"isVerified" Bool DEFAULT FALSE
+);
