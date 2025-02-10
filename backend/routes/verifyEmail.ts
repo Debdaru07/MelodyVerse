@@ -1,13 +1,20 @@
 import { Request, Response } from 'express';
 import { ResponseClass, StatusType } from '../utils/ResponseClass';
-import { verifyEmailSchema } from '../zod/verifyEmailSchema';
 import { prisma } from '../utils/prismaClient';
 
-// const parsedInput = verifyEmailSchema.safeParse(req.body);
-// if(!parsedInput.success){
-//     return res.json(new ResponseClass({ error: parsedInput.error }, "ERR3", StatusType.Fail));
-// }
 export const verifyEmail = async(req: Request, res: Response) => {
+    /**
+     * Handles email verification for a user.
+     * 
+     * This function performs the following steps:
+     * 1. Retrieves the authenticated user from the request object (assumed to be set by middleware).
+     * 2. Updates the `isVerified` field in the database to `true` for the authenticated user.
+     * 3. Returns an HTML response confirming successful email verification.
+     * 
+     * @param req - Express Request object containing the authenticated user's details.
+     * @param res - Express Response object used to return the verification result.
+     * @returns An HTML response confirming email verification or an error message in JSON format.
+     */
     try{
 
         const user = (req as any).user;

@@ -7,6 +7,24 @@ import jwt from 'jsonwebtoken';
 import { sendVerificationEmail } from '../utils/sendVerificationEmail';
 import { generateJWT } from '../utils/auth';
 const signUp = async (req: Request, res: Response) => { 
+    /**
+     * Handles user registration (sign-up) process.
+     * 
+     * This function performs the following steps:
+     * 1. Validates the incoming request body using `signUpSchema` to ensure proper input format.
+     * 2. Checks if a user with the provided `username` or `email` already exists in the database (case-insensitive email check).
+     * 3. If a user already exists, returns an error response.
+     * 4. Hashes the provided password for secure storage.
+     * 5. Creates a new user in the database with the provided `name`, `username`, `email`, and hashed password.
+     * 6. Generates a JWT token for email verification and constructs a verification link.
+     * 7. Attempts to send a verification email to the user's email address.
+     * 8. Generates an access token for the newly created user.
+     * 9. Returns a success response with the generated access token.
+     * 
+     * @param req - Express Request object containing `username`, `password`, `name`, and `email` in the request body.
+     * @param res - Express Response object used to return the registration result.
+     * @returns A JSON response with an access token (on success) or an error message (on failure).
+     */
     try {
         const parsedInput = signUpSchema.safeParse(req.body);
         

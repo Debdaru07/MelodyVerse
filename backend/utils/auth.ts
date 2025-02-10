@@ -1,6 +1,19 @@
 import jwt from 'jsonwebtoken';
 
 export function generateJWT(userId: string) {
+    /**
+     * Generates a JSON Web Token (JWT) for user authentication.
+     * 
+     * This function creates a signed JWT containing:
+     * - `userId`: The unique identifier of the user.
+     * - `lastActivity`: A timestamp indicating when the token was generated.
+     * 
+     * The token is signed using a secret key and is set to expire in 1 day.
+     * 
+     * @param userId - The unique identifier of the user.
+     * @returns A signed JWT as a string.
+     */
+
 
     const secret = process.env.JWT_SECRET || "Random pass";
 
@@ -16,82 +29,3 @@ export function generateJWT(userId: string) {
     );
     return token;
 }
-
-// export const verifyJWT = async (req) => {
-//     try {
-//       const authHeader = req.header("Authorization");
-//       const token =
-//         authHeader && authHeader.startsWith("Bearer ")
-//           ? authHeader.substring(7)
-//           : null;
-  
-//       if (!token) {
-//         const error = new Error("ERR21");
-//         error.statusCode = 401;
-//         throw error;
-//       }
-//       const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-//       const user = await prisma.user.findFirst({
-//         where: {
-//           XipperID: decodedToken.userId
-//         },
-//         include: {
-//           company: {
-//             include: {
-//               businessUnit: true
-//             }
-//           },
-//           role: true,
-//           documents: true,
-//           address: {
-//             where: {
-//               isPrimary: true
-//             }
-//           },
-//           contactNumbers: {
-//             where: {
-//               isPrimary: true
-//             },
-//             select: {
-//               number: true
-//             }
-//           },
-//           contactEmails: {
-//             where: {
-//               isPrimary: true
-//             },
-//             select: {
-//               email: true
-//             }
-//           },
-//           employee: {
-//             select: {
-//               companyId: true,
-//               role: true,
-//               businessUnit: {
-//                 select: {
-//                   companyBusinessUnit: {
-//                     select: {
-//                       hotel: {
-//                         select: {
-//                           XipperID: true
-//                         }
-//                       }
-//                     }
-//                   }
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       });
-      
-//       if (!user) {
-//         const error = new Error("ERR8");
-//         throw error;
-//       }
-//       return user;
-//     } catch (error) {
-//       throw error;
-//     }
-//   };

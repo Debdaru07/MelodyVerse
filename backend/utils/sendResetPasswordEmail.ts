@@ -1,6 +1,11 @@
 import nodemailer from 'nodemailer';
 
 export const sendResetPasswordEmail = async (email: string, password: string) => {
+    /**
+     * Sends a password reset email to the user with the new password.
+     * @param email - The recipient's email address.
+     * @param password - The newly generated password.
+     */
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS }

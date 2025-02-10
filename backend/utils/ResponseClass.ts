@@ -4,6 +4,9 @@ enum StatusType {
 }
 
 class ResponseClass {
+    /**
+     * A standardized response class to structure API responses.
+     */
     status: StatusType;
     message: string;
     data: {};

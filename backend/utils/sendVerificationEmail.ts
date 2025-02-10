@@ -1,5 +1,11 @@
 import nodemailer from 'nodemailer';
 
+/**
+ * Sends an email verification link to the user's email address.
+ * @param email - The recipient's email address.
+ * @param link - The verification link that the user needs to click.
+ */
+
 export const sendVerificationEmail = async (email: string, link: string) => {
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
