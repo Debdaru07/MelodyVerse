@@ -74,26 +74,23 @@ function SigninForm() {
         </div>
 
         <div className="relative">
-            <label htmlFor="password" className="block text-lg font-medium text-gray-700">
-                Password
-            </label>
-            <input
-            type={showPassword ? "text" : "password"} // Toggle between text and password
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="mt-1 block w-full px-4 py-2 border rounded-lg bg-[#e0f2ca] focus:outline-none focus:ring-2 focus:ring-green-500"
-            placeholder="********"
-            />
-            <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)} // Toggle visibility
-            className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700"
-            >
-            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />} {/* Toggle icon */}
-            </button>
-        </div>
+  <input
+    type={showPassword ? "text" : "password"}
+    id="password"
+    name="password"
+    value={formData.password}
+    onChange={handleChange}
+    className="mt-1 block w-full px-4 py-2 pr-10 border rounded-lg bg-[#e0f2ca] focus:outline-none focus:ring-2 focus:ring-green-500 z-10" // Added z-10
+    placeholder="********"
+  />
+  <button
+    type="button"
+    onClick={() => setShowPassword(!showPassword)}
+    className="absolute top-5 right-3 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 z-0" // Added z-0
+  >
+    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+  </button>
+</div>
 
         <div className="mt-6">
           <button

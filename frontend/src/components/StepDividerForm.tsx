@@ -61,10 +61,10 @@ export default function StepDividerForm() {
 
     try {
       const res = await signUpApi(formData);
-      toast.success("Sign up successful!");
       if(res!==null){
         // localStorage.setItem('accesstoken', res?.accessToken)
-        navigate('/signin')
+        navigate('/')
+        toast.success("Sign up successful!");
       }
     } catch (error) {
       toast.error("Sign up failed. Please try again.");
@@ -76,7 +76,7 @@ export default function StepDividerForm() {
   const passwordStrength = getPasswordStrength(formData.password);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6">
+    <div className="flex flex-col items-center justify-center min-h-screen p-6 -mt-6 md:mt-0">
       <div className="p-6 rounded-lg shadow-md w-full max-w-md">
         <div className="flex justify-between mb-6">
           <div
@@ -177,7 +177,7 @@ export default function StepDividerForm() {
                 <label htmlFor="password" className="block text-lg font-medium text-gray-700">
                   Password
                 </label>
-                <div className="relative">
+                {/* <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"} 
                     id="password"
@@ -190,11 +190,29 @@ export default function StepDividerForm() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)} // Toggle visibility
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700"
+                    className="absolute inset-y-0 top-1/2 transform -translate-y-1/2 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700"
                   >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />} {/* Toggle icon */}
-                  </button>
-                </div>
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />} {/* Toggle icon
+                  </button> 
+                </div> */}
+               <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="mt-1 block w-full px-4 py-2 pr-10 border rounded-lg bg-[#e0f2ca] focus:outline-none focus:ring-2 focus:ring-green-500 z-10" // Added z-10
+                  placeholder="********"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-5 right-3 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 z-0" // Added z-0
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
                 {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
               </div>
 
@@ -241,14 +259,25 @@ export default function StepDividerForm() {
                 </label>
               </div>
 
-              <button
-                onClick={handleSubmit}
-                className="w-full mt-4 bg-green-500 text-white py-2 rounded hover:bg-green-600 transition"
-              >
-                Submit
-              </button>
+              {/* Back and Submit Buttons */}
+              <div className="flex justify-between mt-4 rounded-lg space-x-2">
+                <button
+                  onClick={() => setStep(1)} // Go back to Step 1
+                  className="w-1/3 bg-gray-400 text-white py-2 rounded hover:bg-gray-500 transition"
+                >
+                  Back
+                </button>
+
+                <button
+                  onClick={handleSubmit}
+                  className="w-2/3 bg-green-500 rounded-lg text-white py-2  hover:bg-green-600 transition"
+                >
+                  Submit
+                </button>
+              </div>
             </motion.div>
           )}
+
         </AnimatePresence>
       </div>
     </div>
