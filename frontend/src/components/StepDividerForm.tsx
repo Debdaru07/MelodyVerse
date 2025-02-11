@@ -61,10 +61,10 @@ export default function StepDividerForm() {
 
     try {
       const res = await signUpApi(formData);
-      toast.success("Sign up successful!");
       if(res!==null){
         // localStorage.setItem('accesstoken', res?.accessToken)
         navigate('/')
+        toast.success("Sign up successful!");
       }
     } catch (error) {
       toast.error("Sign up failed. Please try again.");
