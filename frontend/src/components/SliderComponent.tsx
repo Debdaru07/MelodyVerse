@@ -28,9 +28,9 @@ export default function AuthToggle({isSignIn, setIsSignIn}: {
           Sign Up
         </button>
       </div>
-
-      <div className="mt-6 text-xl font-semibold text-black">
-        {isSignIn ? "Welcome Back!" : "Join Us!"}
+      
+      <div className="mt-6 text-md from-neutral-50 text-gray-500">
+        {isSignIn ? "Welcome Back" : "Join Us"}
       </div>
     </div>
   );
