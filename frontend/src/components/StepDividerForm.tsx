@@ -64,7 +64,7 @@ export default function StepDividerForm() {
       toast.success("Sign up successful!");
       if(res!==null){
         // localStorage.setItem('accesstoken', res?.accessToken)
-        navigate('/signin')
+        navigate('/')
       }
     } catch (error) {
       toast.error("Sign up failed. Please try again.");
@@ -177,7 +177,7 @@ export default function StepDividerForm() {
                 <label htmlFor="password" className="block text-lg font-medium text-gray-700">
                   Password
                 </label>
-                <div className="relative">
+                {/* <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"} 
                     id="password"
@@ -190,11 +190,29 @@ export default function StepDividerForm() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)} // Toggle visibility
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700"
+                    className="absolute inset-y-0 top-1/2 transform -translate-y-1/2 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700"
                   >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />} {/* Toggle icon */}
-                  </button>
-                </div>
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />} {/* Toggle icon
+                  </button> 
+                </div> */}
+               <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="mt-1 block w-full px-4 py-2 pr-10 border rounded-lg bg-[#e0f2ca] focus:outline-none focus:ring-2 focus:ring-green-500 z-10" // Added z-10
+                  placeholder="********"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-5 right-3 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 z-0" // Added z-0
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
                 {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
               </div>
 

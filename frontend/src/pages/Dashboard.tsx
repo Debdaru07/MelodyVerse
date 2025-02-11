@@ -1,7 +1,14 @@
 import Navbar from '@/components/Navbar'
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
     const isVerified = localStorage.getItem('isVerified') || false;
+    const accessToken = localStorage.getItem('accessToken');
+    const navigate = useNavigate();
+    useEffect(()=>{
+      if(!accessToken) navigate('/')  
+    }, [])
   return (
     <div className='h-screen'>
         <Navbar />
