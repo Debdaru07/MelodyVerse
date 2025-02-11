@@ -55,3 +55,5 @@ docker-compose logs -f
 ```
 
 Happy coding! 🚀
+
+### Hit the browser on http://localhost:3000
