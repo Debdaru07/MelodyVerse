@@ -7,6 +7,9 @@ import { verifyEmail } from './routes/verifyEmail';
 import { verifyJWT } from './middleware/verifyToken';
 import cors from 'cors';
 import { resetPassword } from './routes/resetEmail';
+// @ts-ignore
+import xss from 'xss-clean'; 
+import helmet from 'helmet';
 
 export const app = express();
 
@@ -20,9 +23,11 @@ const limiter = rateLimit({
 });
 
 
-app.use(express.json());
+app.use(express.json({ strict: true }));
 app.use(cors())
+app.use(helmet())   // Secure HTTP headers
 app.use(limiter);
+app.use(xss()); // prevent against xss attacks
 
 // @ts-expect-error
 app.post('/signup', signUp);
