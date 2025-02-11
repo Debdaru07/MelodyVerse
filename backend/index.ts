@@ -8,7 +8,7 @@ import { verifyJWT } from './middleware/verifyToken';
 import cors from 'cors';
 import { resetPassword } from './routes/resetEmail';
 
-const app = express();
+export const app = express();
 
 import rateLimit from 'express-rate-limit';
 

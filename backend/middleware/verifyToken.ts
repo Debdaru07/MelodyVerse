@@ -2,6 +2,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { prisma } from "../utils/prismaClient";
+import { ResponseClass, StatusType } from "../utils/ResponseClass";
 
 interface DecodedToken {
   email: string;
@@ -31,6 +32,6 @@ export const verifyJWT = async (req: Request, res: Response, next: NextFunction)
     next();
   } catch (error) {
     console.error("JWT Verification Error:", error);
-    return res.status(401).json({ message: "Unauthorized: Invalid token", code: "ERR8" });
+    return res.json(new ResponseClass({}, "ERR8", StatusType.Fail));
   }
 };

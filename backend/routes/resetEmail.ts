@@ -57,6 +57,7 @@ export const resetPassword = async(req: Request, res: Response) => {
             await sendResetPasswordEmail(email, password) 
         }catch(err){
             console.log("error", err)
+            return res.json(new ResponseClass({}, "ERR2" , StatusType.Fail));
         }
         return res.json(new ResponseClass({}, "MSG2" , StatusType.Success));
         
