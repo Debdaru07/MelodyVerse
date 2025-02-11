@@ -76,7 +76,7 @@ export default function StepDividerForm() {
   const passwordStrength = getPasswordStrength(formData.password);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6">
+    <div className="flex flex-col items-center justify-center min-h-screen p-6 -mt-6 md:mt-0">
       <div className="p-6 rounded-lg shadow-md w-full max-w-md">
         <div className="flex justify-between mb-6">
           <div
@@ -241,14 +241,25 @@ export default function StepDividerForm() {
                 </label>
               </div>
 
-              <button
-                onClick={handleSubmit}
-                className="w-full mt-4 bg-green-500 text-white py-2 rounded hover:bg-green-600 transition"
-              >
-                Submit
-              </button>
+              {/* Back and Submit Buttons */}
+              <div className="flex justify-between mt-4 rounded-lg space-x-2">
+                <button
+                  onClick={() => setStep(1)} // Go back to Step 1
+                  className="w-1/3 bg-gray-400 text-white py-2 rounded hover:bg-gray-500 transition"
+                >
+                  Back
+                </button>
+
+                <button
+                  onClick={handleSubmit}
+                  className="w-2/3 bg-green-500 rounded-lg text-white py-2  hover:bg-green-600 transition"
+                >
+                  Submit
+                </button>
+              </div>
             </motion.div>
           )}
+
         </AnimatePresence>
       </div>
     </div>
